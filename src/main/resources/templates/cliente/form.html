@@ -25,7 +25,7 @@
 
         <div class="mb-3">
             <label for="cpf" class="form-label">CPF</label>
-            <input type="text" class="form-control" id="preco" th:field="*{cpf}">
+            <input type="text" class="form-control" id="cpf" th:field="*{cpf}">
             <div class="text-danger" th:if="${#fields.hasErrors('cpf')}" th:errors="*{cpf}"></div>
         </div>
 
