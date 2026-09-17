@@ -33,7 +33,51 @@
             <label for="telefone" class="form-label">Telefone</label>
             <input type="text" class="form-control" id="telefone" th:field="*{telefone}">
             <div class="text-danger" th:if="${#fields.hasErrors('telefone')}" th:errors="*{telefone}"></div>
-        </div>        
+        </div>
+
+        <div class="mb-3">
+            <label for="logradouro" class="form-label">Logradouro</label>
+            <input type="text" class="form-control" id="logradouro" th:field="*{logradouro}">
+            <div class="text-danger" th:if="${#fields.hasErrors('logradouro')}" th:errors="*{logradouro}"></div>
+        </div>
+
+        <div class="mb-3">
+            <label for="numero" class="form-label">Número</label>
+            <input type="number" class="form-control" id="numero" th:field="*{numero}">
+            <div class="text-danger" th:if="${#fields.hasErrors('numero')}" th:errors="*{numero}"></div>
+        </div>
+
+        <div class="mb-3">
+            <label for="complemento" class="form-label">Complemento</label>
+            <input type="text" class="form-control" id="complemento" th:field="*{complemento}">
+            <div class="text-danger" th:if="${#fields.hasErrors('complemento')}" th:errors="*{complemento}"></div>
+        </div>
+
+        <div class="mb-3">
+            <label for="bairro" class="form-label">Bairro</label>
+            <input type="text" class="form-control" id="bairro" th:field="*{bairro}">
+            <div class="text-danger" th:if="${#fields.hasErrors('bairro')}" th:errors="*{bairro}"></div>
+        </div>
+
+        <div class="mb-3">
+            <label for="cidade" class="form-label">Cidade</label>
+            <input type="text" class="form-control" id="cidade" th:field="*{cidade}">
+            <div class="text-danger" th:if="${#fields.hasErrors('cidade')}" th:errors="*{cidade}"></div>
+        </div>
+
+        <div class="mb-3">
+            <label for="uf" class="form-label">UF</label>
+            <input type="text" class="form-control" id="uf" th:field="*{uf}">
+            <div class="text-danger" th:if="${#fields.hasErrors('uf')}" th:errors="*{uf}"></div>
+        </div>
+
+        <div class="mb-3">
+            <label for="cep" class="form-label">CEP</label>
+            <input type="text" class="form-control" id="cep" th:field="*{cep}">
+            <div class="text-danger" th:if="${#fields.hasErrors('cep')}" th:errors="*{cep}"></div>
+        </div>
+
+
 
         <button type="submit" class="btn btn-primary">Salvar</button>
         <a th:href="@{/clientes}" class="btn btn-secondary">Cancelar</a>
