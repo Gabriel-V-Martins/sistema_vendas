@@ -66,7 +66,7 @@ public class ClienteController {
 
         clienteService.atualizar(cliente.getId(), cliente);
 
-        return "redirect:/produtos";
+        return "redirect:/clientes";
     }
 
     // Excluir cliente
