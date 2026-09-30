@@ -1,5 +1,6 @@
 package br.com.aweb.sistema_vendas.model;
 
-public class StatusPedido {
-    
+public enum StatusPedido {
+    ATIVO,
+    CANCELADO
 }

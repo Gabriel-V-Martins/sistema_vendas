@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Pedido</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-4">
+    <h1 th:text="|Pedido #${pedido.id}|"></h1>
+    <p>Cliente: <span th:text="${pedido.cliente.nome}"></span></p>
+    <div class="alert alert-danger" role="alert" th:if="${erro}" th:text="${erro}"></div>
+    <form th:action="@{/pedidos/{id}/adicionar-item(id=${pedido.id})}" method="post" class="mb-4">
+        <div class="mb-3">
+            <label for="produtoId" class="form-label">Produto</label>
+            <select id="produtoId" name="produtoId" class="form-select" required>
+                <option value="">Selecione um produto</option>
+                <option th:each="produto : ${produtos}" th:value="${produto.id}"
+                        th:text="|${produto.nome} — R$ ${produto.preco} — Estoque: ${produto.quantidadeEmEstoque}|"></option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="quantidade" class="form-label">Quantidade</label>
+            <input id="quantidade" name="quantidade" type="number" min="1" step="1" value="1" class="form-control" required>
+        </div>
+        <button class="btn btn-primary" type="submit">Adicionar Item</button>
+    </form>
+    <table class="table table-bordered table-striped">
+        <thead><tr><th>Produto</th><th>Quantidade</th><th>Preço unitário (R$)</th><th>Subtotal (R$)</th><th>Ações</th></tr></thead>
+        <tbody>
+        <tr th:if="${#lists.isEmpty(pedido.itens)}"><td colspan="5">Nenhum item adicionado.</td></tr>
+        <tr th:each="item : ${pedido.itens}">
+            <td th:text="${item.produto.nome}"></td>
+            <td th:text="${item.quantidade}"></td>
+            <td th:text="${#numbers.formatDecimal(item.precoUnitario, 1, 'POINT', 2, 'COMMA')}"></td>
+            <td th:text="${#numbers.formatDecimal(item.precoUnitario * item.quantidade, 1, 'POINT', 2, 'COMMA')}"></td>
+            <td><form th:action="@{/pedidos/{pedidoId}/remover-item/{itemId}(pedidoId=${pedido.id},itemId=${item.id})}" method="post">
+                <button class="btn btn-sm btn-danger" type="submit">Remover</button>
+            </form></td>
+        </tr>
+        </tbody>
+    </table>
+    <p class="fw-bold">Total: R$ <span th:text="${#numbers.formatDecimal(pedido.valorTotal, 1, 'POINT', 2, 'COMMA')}"></span></p>
+    <form th:action="@{/pedidos/{id}/finalizar(id=${pedido.id})}" method="post">
+        <button class="btn btn-success" type="submit">Finalizar</button>
+        <a class="btn btn-secondary" th:href="@{/pedidos}">Voltar</a>
+    </form>
+</div>
+</body>
+</html>

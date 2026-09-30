@@ -1,5 +1,8 @@
 package br.com.aweb.sistema_vendas.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.validator.constraints.br.CPF;
 
 import jakarta.persistence.Column;
@@ -7,6 +10,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -14,6 +18,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Table(name = "clientes")
@@ -69,5 +74,9 @@ public class Cliente {
     @NotBlank(message = "CEP é obrigatório")
     @Column(length = 100)
     private String cep;
+
+    @OneToMany(mappedBy = "cliente")
+    @ToString.Exclude
+    private List<Pedido> pedidos = new ArrayList<>();
 
 }

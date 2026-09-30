@@ -21,13 +21,16 @@ import jakarta.persistence.Version;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Table(name = "pedidos")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(of = "id")
 public class Pedido {
 
     // Construtor personalizado
@@ -54,7 +57,9 @@ public class Pedido {
     @Column(nullable = false, length = 10)
     private StatusPedido status = StatusPedido.ATIVO;
 
+    // cascade propaga salvar/atualizar/excluir; orphanRemoval exclui itens retirados da lista.
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
+    @ToString.Exclude
     private List<ItemPedido> itens = new ArrayList<>();
 
     @Version

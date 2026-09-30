@@ -9,10 +9,21 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
+@Table(name = "itens_pedido")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(of = "id")
 public class ItemPedido {
 
     // Construtor personalizado
@@ -29,6 +40,7 @@ public class ItemPedido {
     @NotNull
     @ManyToOne
     @JoinColumn(name = "pedido_id", nullable = false)
+    @ToString.Exclude
     private Pedido pedido;
 
     @NotNull

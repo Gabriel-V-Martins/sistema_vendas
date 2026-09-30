@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Novo Pedido</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-4">
+    <h1>Novo Pedido</h1>
+    <p th:if="${#lists.isEmpty(clientes)}" class="alert alert-info">Cadastre um cliente antes de criar um pedido.</p>
+    <form th:action="@{/pedidos/novo}" method="post">
+        <div class="mb-3">
+            <label for="clienteId" class="form-label">Cliente</label>
+            <select id="clienteId" name="clienteId" class="form-select" required>
+                <option value="">Selecione um cliente</option>
+                <option th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.nome}"></option>
+            </select>
+        </div>
+        <button class="btn btn-primary" type="submit" th:disabled="${#lists.isEmpty(clientes)}">Criar Pedido</button>
+        <a class="btn btn-secondary" th:href="@{/pedidos}">Voltar</a>
+        <a class="btn btn-outline-primary" th:href="@{/clientes/novo}">Cadastrar Cliente</a>
+    </form>
+</div>
+</body>
+</html>
