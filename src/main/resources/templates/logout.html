@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sair - Sistema de Vendas</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5 text-center">
+        <h2>Encerrar sessão</h2>
+
+        <p>Deseja realmente sair do sistema?</p>
+
+        <form th:action="@{/logout}" method="post">
+            <button type="submit" class="btn btn-danger">
+                Confirmar saída
+            </button>
+
+            <a th:href="@{/}" class="btn btn-secondary">
+                Cancelar
+            </a>
+        </form>
+    </div>
+</body>
+</html>
