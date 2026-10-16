@@ -2,8 +2,8 @@ package br.com.aweb.sistema_vendas.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -16,13 +16,17 @@ public class ConfiguracoesDeSeguranca {
 
         return http
             .authorizeHttpRequests(req -> req
-                .requestMatchers("/css/**", "/js/**", "/img/**", "/login")
-                .permitAll()
-                .anyRequest()
-                .authenticated()
+                .requestMatchers(
+                    "/css/**",
+                    "/js/**",
+                    "/img/**",
+                    "/login"
+                ).permitAll()
+                .anyRequest().authenticated()
             )
             .formLogin(form -> form
                 .loginPage("/login")
+                .loginProcessingUrl("/login")
                 .defaultSuccessUrl("/", true)
                 .permitAll()
             )
